@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:moc_3_2025/home_screen.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(
+            fontSize: 42,
+            color: Colors.orange,
+          ),
+        ),
+      ),
+      home: HomeScreen(),
+    );
+  }
+}
