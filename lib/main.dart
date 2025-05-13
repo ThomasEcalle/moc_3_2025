@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moc_3_2025/home_screen.dart';
 
+import 'stateful_exercises/exercise_one.dart';
+import 'stateful_exercises/exercise_two.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: HomeScreen(),
+      home: ExerciseTwo(),
     );
   }
 }
