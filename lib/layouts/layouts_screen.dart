@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'red_circle.dart';
+import 'responsive_card.dart';
 
-class LayoutsScreen extends StatelessWidget {
+class LayoutsScreen extends StatefulWidget {
   const LayoutsScreen({super.key});
+
+  @override
+  State<LayoutsScreen> createState() => _LayoutsScreenState();
+}
+
+class _LayoutsScreenState extends State<LayoutsScreen> {
+  bool _animate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +33,15 @@ class LayoutsScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 2,
-                      child: Container(
-                        color: isSmallScreen ? Colors.orange : Colors.pink,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _animate = !_animate;
+                          });
+                        },
+                        child: Container(
+                          color: isSmallScreen ? Colors.orange : Colors.pink,
+                        ),
                       ),
                     ),
                     Expanded(
@@ -57,36 +72,58 @@ class LayoutsScreen extends StatelessWidget {
               child: Container(
                 color: Colors.orange,
                 width: double.infinity,
-                child: Row(
+                child: Stack(
                   children: [
-                    Expanded(
-                      child: Container(
-                        height: double.infinity,
-                        color: Colors.blue,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RedCircle(),
-                              const SizedBox(width: 10),
-                              RedCircle(),
-                              const Spacer(),
-                              RedCircle(),
-                              // Expanded(
-                              //   child: Align(
-                              //     alignment: Alignment.topRight,
-                              //     child: RedCircle(),
-                              //   ),
-                              // ),
-                            ],
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: double.infinity,
+                            color: Colors.blue,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  RedCircle(),
+                                  const SizedBox(width: 10),
+                                  RedCircle(),
+                                  const Spacer(),
+                                  RedCircle(),
+                                  // Expanded(
+                                  //   child: Align(
+                                  //     alignment: Alignment.topRight,
+                                  //     child: RedCircle(),
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
+                        Expanded(
+                          child: Container(
+                            height: double.infinity,
+                            color: Colors.green,
+                            child: ResponsiveCard(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    AnimatedPositioned(
+                      duration: const Duration(milliseconds: 500),
+                      top: _animate ? 50 : 120,
+                      left: _animate ? 20 : 100,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        height: 100,
+                        width: _animate ? 50 : 100,
+                        color: _animate ? Colors.yellow: Colors.red,
                       ),
                     ),
-                    Expanded(
+                    Positioned.fill(
                       child: Container(
-                        color: Colors.green,
+                        color: Colors.black.withValues(alpha: .2),
                       ),
                     ),
                   ],
