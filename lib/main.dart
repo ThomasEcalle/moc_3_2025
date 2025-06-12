@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moc_3_2025/home_screen.dart';
 import 'package:moc_3_2025/lists/lists_screen.dart';
+import 'package:moc_3_2025/web_services/web_services_screen.dart';
 
 import 'layouts/layouts_screen.dart';
 import 'stateful_exercises/exercise_one.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: ListsScreen(),
+      home: WebServicesScreen(),
     );
   }
 }
